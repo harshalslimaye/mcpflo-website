@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const repo = "https://github.com/harshalslimaye/mcpflo";
+
+interface ReleaseItem {
+  text: string;
+  hash: string;
+  commitUrl: string;
+}
+
+interface Release {
+  version: string;
+  date: string;
+  compareUrl: string;
+  releaseUrl: string;
+  features: ReleaseItem[];
+  fixes: ReleaseItem[];
+}
+
+const releases: Release[] = [
+  {
+    version: "0.1.0",
+    date: "July 3, 2026",
+    compareUrl: `${repo}/compare/v0.0.6...v0.1.0`,
+    releaseUrl: `${repo}/releases/tag/v0.1.0`,
+    features: [
+      { text: 'Add "All" history tab with unified cross-server activity log', hash: "29c1a97", commitUrl: `${repo}/commit/29c1a973a4e6919a72cfd7fc7f01cbb181602a61` },
+      { text: "Add @mcpflo/server-everything test-fixture MCP server", hash: "0d89c22", commitUrl: `${repo}/commit/0d89c225f5b7862e8b7c70c70adcad8395f47c8b` },
+      { text: "Add a Tokens tab — response footprint and definition footprint", hash: "e506ecf", commitUrl: `${repo}/commit/e506ecfeca50bbac0d2b5e187ad15ba715043734` },
+      { text: "Add an OAuth auth details panel to the server detail view", hash: "0ca6754", commitUrl: `${repo}/commit/0ca67542af5024a846c83a4b78fd3466e94ab825` },
+      { text: "Add context-budget card to the server details view", hash: "e8c44f0", commitUrl: `${repo}/commit/e8c44f09dc6780e47bf5d13fe08a49a7d0e5d930` },
+      { text: "Add context-budget token-estimation utility", hash: "208b7d0", commitUrl: `${repo}/commit/208b7d0f49508e2cfaaac0af55326e121071d693` },
+      { text: "Add disconnect action to server rows", hash: "b773408", commitUrl: `${repo}/commit/b77340840698179e9731ef4798f67b25e8328a9a` },
+      { text: "Add expand/collapse all control to sidebar header", hash: "e7e17cb", commitUrl: `${repo}/commit/e7e17cb17e3bb19042c774f9a728832640432d47` },
+      { text: "Add pretty JSON tree view for result panels", hash: "78bed3a", commitUrl: `${repo}/commit/78bed3a1815ebfe8c5f13532278978360a4df67e` },
+      { text: "Add protocol version override for MCP connections", hash: "85fa484", commitUrl: `${repo}/commit/85fa484438e9cbe143387940392de8960c2259b1` },
+      { text: "Add Tools/Resources/Prompts sections to the server details view", hash: "2fac48e", commitUrl: `${repo}/commit/2fac48e308e10e01d388f020b624d14237156ad1` },
+      { text: "Cancel an in-flight capability fetch", hash: "55077bd", commitUrl: `${repo}/commit/55077bdc0aea4d7b464b7dcc66295d4912ff4b0d` },
+      { text: "Encrypt server credentials at rest with safeStorage", hash: "33a2cfb", commitUrl: `${repo}/commit/33a2cfb567b20749aa8ad5b8ad4d65eceeb62948` },
+      { text: "Keep transport secrets in main, operate on servers by id", hash: "29946fa", commitUrl: `${repo}/commit/29946fac47d8d3285aefea103113ab7ffc170314` },
+      { text: 'Prefill the form when activating a tool/prompt from the "All" tab', hash: "2e09e03", commitUrl: `${repo}/commit/2e09e03bbd191808aade4357f8532507d37d20f0` },
+      { text: "Replace KEY=VALUE textareas with key/value row editor", hash: "270d521", commitUrl: `${repo}/commit/270d521c486bbbfb56e78733c361c97c408743f5` },
+      { text: "Select a server to open its (placeholder) details view", hash: "7cdbef2", commitUrl: `${repo}/commit/7cdbef214061c3e867834be415dca21cf0401955` },
+      { text: "Server details header and action bar", hash: "25372d4", commitUrl: `${repo}/commit/25372d460d42072d1d143529716639ecefce03a1` },
+      { text: "Tooltip and hover affordance on context-budget bar segments", hash: "8668acb", commitUrl: `${repo}/commit/8668acb482ffc20ecd8ea0bcdc731120459676a7` },
+      { text: "Track token issue time so hydration reports honest auth status", hash: "8d00fc5", commitUrl: `${repo}/commit/8d00fc5b716e7666d1eaf7400e5b838835bd852d` },
+    ],
+    fixes: [
+      { text: "Allowlist scheme before shell.openExternal", hash: "7a578a4", commitUrl: `${repo}/commit/7a578a4d932dc7561517722c8d40f26754c52b25` },
+      { text: "Block OAuth over cleartext http to non-loopback hosts", hash: "c29ab37", commitUrl: `${repo}/commit/c29ab3774ff4417a890c65577b9742f147b9af83` },
+      { text: "Block top-level navigation to non-app origins in main window", hash: "690ae03", commitUrl: `${repo}/commit/690ae03b57caf535adf3c42f979a0a0ded0c85f7` },
+      { text: "Bundle preload deps so sandboxed preload can load them", hash: "7b0229a", commitUrl: `${repo}/commit/7b0229ab3e02a2ca2ed5d601e36ac18e3a295c46` },
+      { text: "Clear cached capabilities when disconnecting a server", hash: "f18b579", commitUrl: `${repo}/commit/f18b5795e0b694ea15ad9e5d28f48539eaeb8896` },
+      { text: "Close spawned MCP server processes on app quit", hash: "c948799", commitUrl: `${repo}/commit/c948799e55597358e096a5c52b73ae30017024e2` },
+      { text: "Correct token footprint tokenizer label to o200k_base", hash: "a48196a", commitUrl: `${repo}/commit/a48196a84e7c2d5f031191354e5e50092b3c8e80` },
+      { text: "Disconnect a server's live process when it's removed", hash: "685c916", commitUrl: `${repo}/commit/685c9165d475111370b7f6816014a7cb9c4e2575` },
+      { text: "E2E specs broken by the server-row chevron/select split", hash: "45a3627", commitUrl: `${repo}/commit/45a3627d459549fc3e4145df0f3b1e11604ea4c4` },
+      { text: "Enable Chromium renderer sandbox", hash: "e7b4f2f", commitUrl: `${repo}/commit/e7b4f2f8d3ee05a36efd78f4132d61db94325429` },
+      { text: "Exempt MCP-UI resources from the response size cap", hash: "490587e", commitUrl: `${repo}/commit/490587ea8d9679becaf0fcc60ccdb3d182d0980d` },
+      { text: "Initialize captured to satisfy TS definite-assignment check", hash: "4110e03", commitUrl: `${repo}/commit/4110e037702afc001de57524b268415985ec24b5` },
+      { text: "Prepare server-everything package for npm publish", hash: "9253b15", commitUrl: `${repo}/commit/9253b15fe159bb6036b5c6da8852e92a4b29377f` },
+      { text: "Report finishAuth failures instead of leaving the row stuck pending", hash: "40b463b", commitUrl: `${repo}/commit/40b463b539370a89998430c9173a3f3db20a9288` },
+      { text: "Sign out disconnects the server and restore auth status on launch", hash: "9198b27", commitUrl: `${repo}/commit/9198b27127a60c9ac1f2b9da59163f1f5fdbb1b3` },
+      { text: "Stop misdiagnosing ordinary connect failures as DCR failures", hash: "8026ea1", commitUrl: `${repo}/commit/8026ea1ad0334f0ac18152da0d6b553c92a163f0` },
+      { text: "Stop selecting a server from forcing a connect attempt", hash: "24fc755", commitUrl: `${repo}/commit/24fc755351a3954fdc0015f03b4c997c50748c33` },
+      { text: "Suppress stale re-auth browser tab on mid-session token expiry", hash: "52ef73e", commitUrl: `${repo}/commit/52ef73ef4d5e0a6e0a75c78e8e47d59621934bbc` },
+      { text: "Tooltip colors track the app's actual theme, not OS preference", hash: "ca33b60", commitUrl: `${repo}/commit/ca33b60476396671ece1f8fe5bd7ba29e37cf626` },
+      { text: "Validate OAuth callback state before honoring error/settling the flow", hash: "f5cebc2", commitUrl: `${repo}/commit/f5cebc263c806f47d2a287808be69167b8729d84` },
+      { text: "Validate server id in IPC handlers before it reaches fs paths", hash: "9f8a4ae", commitUrl: `${repo}/commit/9f8a4aebe59507e77155fdbd8f52252aade9496c` },
+    ],
+  },
+];
+---
+<Layout title="MCPFlo — Changelog">
+  <section class="log-sec">
+    <div class="wrap log-wrap">
+      <p class="crumb mono">changelog</p>
+      <h1 class="title">Changelog</h1>
+      <p class="lede">
+        Notable changes to MCPFlo, release by release. Full history and
+        downloadable builds live on
+        {" "}<a href={`${repo}/releases`} target="_blank" rel="noopener">GitHub Releases</a>.
+      </p>
+
+      {releases.map((release) => (
+        <article class="release">
+          <div class="release-head">
+            <h2 class="version mono">
+              <a href={release.releaseUrl} target="_blank" rel="noopener">v{release.version}</a>
+            </h2>
+            <span class="date mono">{release.date}</span>
+            <a class="compare mono" href={release.compareUrl} target="_blank" rel="noopener">diff</a>
+          </div>
+
+          {release.features.length > 0 && (
+            <div class="group">
+              <h3 class="group-label mono">Features</h3>
+              <ul>
+                {release.features.map((item) => (
+                  <li>
+                    {item.text}{" "}
+                    <a class="hash mono" href={item.commitUrl} target="_blank" rel="noopener">{item.hash}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {release.fixes.length > 0 && (
+            <div class="group">
+              <h3 class="group-label mono">Bug Fixes</h3>
+              <ul>
+                {release.fixes.map((item) => (
+                  <li>
+                    {item.text}{" "}
+                    <a class="hash mono" href={item.commitUrl} target="_blank" rel="noopener">{item.hash}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .log-sec{padding:56px 0 80px;}
+  .log-wrap{max-width:760px;}
+  .crumb{font-size:12px;color:var(--fg-faint);margin:0 0 10px;}
+  .crumb::before{content:"$ ";color:var(--accent);}
+  .title{font-size:30px;font-weight:700;letter-spacing:-0.02em;margin:0 0 18px;line-height:1.2;}
+  .lede{color:var(--text-muted);font-size:15px;line-height:1.65;margin:0 0 40px;}
+  .lede a{color:var(--accent);}
+  .lede a:hover{text-decoration:underline;}
+
+  .release{padding:32px 0;border-top:1px solid var(--border);}
+  .release-head{display:flex;align-items:baseline;gap:12px;margin:0 0 20px;}
+  .version{font-size:20px;font-weight:700;margin:0;}
+  .version a{color:var(--text-primary);}
+  .version a:hover{color:var(--accent);}
+  .date{font-size:13px;color:var(--fg-faint);}
+  .compare{margin-left:auto;font-size:12.5px;color:var(--text-muted);border:1px solid var(--border);border-radius:20px;padding:3px 10px;}
+  .compare:hover{color:var(--text-primary);border-color:var(--text-muted);}
+
+  .group{margin:0 0 24px;}
+  .group:last-child{margin-bottom:0;}
+  .group-label{font-size:12px;color:var(--fg-faint);letter-spacing:0.04em;text-transform:uppercase;margin:0 0 10px;}
+  .release ul{margin:0;padding-left:1.2em;}
+  .release li{font-size:14.5px;line-height:1.7;color:var(--text-primary);margin:0 0 6px;}
+  .release li::marker{color:var(--accent);}
+  .hash{font-size:12px;color:var(--fg-faint);}
+  .hash:hover{color:var(--accent);}
+</style>

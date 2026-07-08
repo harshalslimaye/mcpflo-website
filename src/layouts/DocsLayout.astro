@@ -3,6 +3,7 @@ import "../styles/docs.css";
 import "../styles/docs-prose.css";
 import ThemeScript from "../components/ThemeScript.astro";
 import NavTools from "../components/NavTools.astro";
+import Footer from "../components/Footer.astro";
 import { getNavGroups, getPrevNext, type DocEntry } from "../lib/nav";
 
 interface Props {
@@ -14,7 +15,6 @@ const { title, section, description } = entry.data;
 const navGroups = await getNavGroups();
 const { prev, next } = await getPrevNext(entry.id);
 
-const repo = "https://github.com/harshalslimaye/mcpflo";
 // Repo that hosts this website. Used by the "Edit this page on GitHub" link.
 const siteRepo = "https://github.com/harshalslimaye/mcpflo-website";
 const editUrl = `${siteRepo}/edit/main/src/content/docs/${entry.id}.md`;
@@ -49,8 +49,8 @@ const editUrl = `${siteRepo}/edit/main/src/content/docs/${entry.id}.md`;
           <div class="nav-links">
             <a href="/#features">Features</a>
             <a href="/docs/getting-started/what-is-mcpflo" class="active">Docs</a>
-            <a href="#">Changelog</a>
-            <a href="#" class="dl">Download</a>
+            <a href="/changelog">Changelog</a>
+            <a href="/download" class="dl">Download</a>
           </div>
           <NavTools />
         </div>
@@ -116,16 +116,7 @@ const editUrl = `${siteRepo}/edit/main/src/content/docs/${entry.id}.md`;
       </main>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <div class="foot-inner mono">
-        <div><span class="p">~/mcpflo</span> <span class="p">$</span> exit</div>
-        <div class="cmt">
-          # MCPFlo · MIT · <a href={repo}>github.com/harshalslimaye/mcpflo</a> ·
-          Issues · Changelog
-        </div>
-      </div>
-    </footer>
+    <Footer />
 
     <script>
       import "../scripts/theme.ts";
