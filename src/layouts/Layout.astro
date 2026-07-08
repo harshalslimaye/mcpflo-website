@@ -30,12 +30,16 @@ const { title = "MCPFlo — Test your MCP servers" } = Astro.props;
       <div class="wrap nav-inner">
         <a href="/" class="wordmark"><img src="/assets/logo.png" alt="" width="22" height="22" /><span>MCP<span class="flo">Flo</span></span></a>
         <div class="nav-right">
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
             <a href="/#features">Features</a>
             <a href="/docs/getting-started/what-is-mcpflo">Docs</a>
             <a href="/changelog">Changelog</a>
             <a href="/download" class="dl">Download</a>
           </div>
+          <button class="icon-btn nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+            <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            <svg class="close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+          </button>
           <NavTools />
         </div>
       </div>
@@ -48,6 +52,7 @@ const { title = "MCPFlo — Test your MCP servers" } = Astro.props;
 
     <script>
       import "../scripts/theme.ts";
+      import "../scripts/mobile-nav.ts";
     </script>
   </body>
 </html>
