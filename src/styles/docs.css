@@ -205,11 +205,6 @@
   .tag{font-family:var(--mono);font-size:12px;color:var(--text-muted);background:var(--bg-surface);
     border:1px solid var(--border);padding:4px 10px;border-radius:20px;}
 
-  /* ---------- Footer ---------- */
-  footer{border-top:1px solid var(--border);background:var(--bg-primary);}
-  .foot-inner{max-width:1320px;margin:0 auto;padding:26px 28px;font-family:var(--mono);font-size:13px;color:var(--text-muted);line-height:1.9;}
-  .foot-inner .p{color:var(--accent);} .foot-inner .cmt{color:var(--fg-faint);} .foot-inner a:hover{color:var(--text-primary);}
-
   /* sidebar scrim for mobile */
   .scrim{display:none;position:fixed;inset:54px 0 0;background:rgba(0,0,0,0.4);z-index:40;}
 
