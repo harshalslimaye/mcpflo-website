@@ -1,0 +1,36 @@
+---
+const repo = "https://github.com/harshalslimaye/mcpflo";
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap foot-grid">
+    <div class="foot-brand">
+      <a href="/" class="wordmark"><img src="/assets/logo.png" alt="" width="22" height="22" /><span>MCP<span class="flo">Flo</span></span></a>
+      <p class="foot-desc">Test your MCP servers — invoke tools, inspect resources, and render prompts directly, with no model in the loop.</p>
+    </div>
+
+    <div class="foot-col">
+      <h4 class="foot-heading mono">Resources</h4>
+      <a href="/docs/getting-started/what-is-mcpflo">Documentation</a>
+      <span>Support</span>
+      <a href={repo}>Github</a>
+      <span>Blog</span>
+    </div>
+
+    <div class="foot-col">
+      <h4 class="foot-heading mono">Community</h4>
+      <a href="https://x.com/mcpflo">Twitter</a>
+      <a href="https://www.reddit.com/r/mcpflo/">Reddit</a>
+    </div>
+
+    <div class="foot-col">
+      <h4 class="foot-heading mono">Legal</h4>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+    </div>
+  </div>
+
+  <div class="wrap foot-bottom mono">
+    © {year} MCPFlo. All rights reserved.
+  </div>
+</footer>

@@ -1,0 +1,221 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const repo = "https://github.com/harshalslimaye/mcpflo";
+
+// These two blocks contain literal { } from JSON; rendered via set:html so Astro
+// doesn't interpret the braces as expressions. Ported verbatim from index.html.
+const traceHtml = `<span class="ar-req">→ tools/call</span>
+<span class="pu">{</span>
+<span class="pu">  </span><span class="k">"method"</span><span class="pu">: </span><span class="s">"tools/call"</span><span class="pu">,</span>
+<span class="pu">  </span><span class="k">"params"</span><span class="pu">: {</span>
+<span class="pu">    </span><span class="k">"name"</span><span class="pu">: </span><span class="s">"create_entities"</span><span class="pu">,</span>
+<span class="pu">    </span><span class="k">"arguments"</span><span class="pu">: { </span><span class="k">"entities"</span><span class="pu">: [ </span><span class="ms">…</span><span class="pu"> ] }</span>
+<span class="pu">  }</span>
+<span class="pu">}</span>
+<span class="pu"> </span>
+<span class="ar-res">← result</span>  <span class="ms">142ms</span>
+<span class="pu">{</span>
+<span class="pu">  </span><span class="k">"content"</span><span class="pu">: [{ </span><span class="k">"type"</span><span class="pu">: </span><span class="s">"text"</span><span class="pu">,</span>
+<span class="pu">    </span><span class="k">"text"</span><span class="pu">: </span><span class="s">"Created 3 entities."</span><span class="pu"> }],</span>
+<span class="pu">  </span><span class="k">"isError"</span><span class="pu">: </span><span class="nu">false</span>
+<span class="pu">}</span>`;
+
+const step1Html = `<span class="pu">{</span>
+<span class="pu">  </span><span class="k">"transport"</span><span class="pu">: </span><span class="s">"stdio"</span><span class="pu">,</span>
+<span class="pu">  </span><span class="k">"command"</span><span class="pu">: </span><span class="s">"npx"</span><span class="pu">,</span>
+<span class="pu">  </span><span class="k">"args"</span><span class="pu">: [</span><span class="s">"-y"</span><span class="pu">, </span><span class="s">"my-mcp-server"</span><span class="pu">]</span>
+<span class="pu">}</span>`;
+
+// Astro collapses the newlines between inline elements, which breaks these
+// whitespace-significant (white-space:pre) ASCII blocks. Rendering them via
+// set:html preserves the line breaks. Ported verbatim from index.html.
+
+// ---- Features section card previews ----
+const featTool = `<span class="ar-req">[MCPFLO] tools/call</span> create_entities
+→ <span class="ok">200 OK</span>  <span class="ms">142ms</span>
+<span class="k">content</span><span class="pu">: [{ </span><span class="k">type</span><span class="pu">: </span><span class="s">"text"</span><span class="pu">,</span>
+<span class="pu">  </span><span class="k">text</span><span class="pu">: </span><span class="s">"Created 3 entities"</span><span class="pu"> }]</span>`;
+
+const featSchema = `<span class="h">JSON Schema      →   Form</span>
+<span class="h">─────────────────    ───────────────</span>
+<span class="k">"name"</span>:   string    <span class="fld">Name</span>  <span class="box">[________]</span>
+<span class="k">"count"</span>:  number    <span class="fld">Count</span> <span class="box">[________]</span>
+<span class="k">"tags"</span>:   array     <span class="fld">Tags</span>  <span class="box">[+] item</span>`;
+
+const featNotifications = `<span class="h">stream              status</span>
+<span class="h">─────────────────    ───────────────</span>
+progress  <span class="box">3/5</span>       <span class="fld">▓▓▓▓░░</span>
+log       <span class="box">info</span>      <span class="ar">"indexing…"</span>
+log       <span class="box">info</span>      <span class="ar">"done"</span>`;
+
+const featElicitation = `<span class="h">tool asks  →  you answer</span>
+<span class="h">─────────────────    ───────────────</span>
+<span class="k">"confirm"</span>: bool     <span class="box">[x] yes</span>
+<span class="k">"reason"</span>:  string   <span class="box">[________]</span>
+<span class="ar">↳ continue</span>           <span class="fld">resume call</span>`;
+
+const featSampling = `<span class="h">server asks      you answer</span>
+<span class="h">─────────────────    ───────────────</span>
+<span class="k">messages</span><span class="pu">: [...]</span>  <span class="fld">Assistant reply</span>
+<span class="k">model</span><span class="pu">: </span><span class="ms">?</span>          <span class="box">[________]</span>
+<span class="fld">model:</span> <span class="s">mcpflo-manual</span>`;
+
+const featContextBudget = `<span class="h">Tools      </span><span class="box">12 items</span> <span class="fld">8.4K tok</span> <span class="ms">34%</span>
+<span class="h">Resources  </span><span class="box"> 6 items</span> <span class="fld">3.1K tok</span> <span class="ms">13%</span>
+<span class="h">Prompts    </span><span class="box"> 4 items</span> <span class="fld">2.0K tok</span> <span class="ms"> 8%</span>
+<span class="h">─────────────────    ───────────────</span>
+<span class="fld">Total</span>        <span class="fld">13.5K tok</span>  <span class="ms">3% of 400K</span>`;
+
+const step2Html = `<span class="ok">✓</span> connected
+<span class="ok">✓</span> 3 tools found
+<span class="ok">✓</span> 2 resources
+<span class="ok">✓</span> 1 prompt`;
+
+const step3Html = `<span class="ar-req">→ tools/call</span>
+  <span class="k">"name"</span><span class="pu">: </span><span class="s">"search"</span>
+<span class="ar-res">←</span> <span class="ok">200 OK</span>  <span class="ms">38ms</span>`;
+---
+<Layout title="MCPFlo — Test your MCP servers">
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="prompt"><span class="dollar">$</span>npx @modelcontextprotocol/server-everything</p>
+        <h1 class="head"><span id="typed"></span><span class="caret"></span></h1>
+        <p class="sub">A direct, deterministic way to call any tool, read any resource, or render any prompt — with the raw request and response in front of you. No model in the loop. No tokens spent.</p>
+        <div class="cta-row">
+          <a href="#" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+            Download for macOS
+          </a>
+          <a href={repo} class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.34-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <div class="cta-meta"><span class="live"></span><b>ready</b><span class="sep">·</span>v0.3.0<span class="sep">·</span>darwin-arm64<span class="sep">·</span>48&nbsp;MB</div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="term">
+          <div class="term-bar">
+            <i class="r"></i><i class="y"></i><i class="g"></i>
+            <span class="term-title mono">json-rpc · stdio</span>
+            <span class="term-status mono"><span class="dot"></span>connected</span>
+          </div>
+          <div class="term-body reveal" id="trace" set:html={traceHtml}></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SECTION DIVIDER ============ -->
+  <div class="wrap"><hr class="section-rule"></div>
+
+  <!-- ============ SCREENSHOT SHOWCASE ============ -->
+  <section class="showcase">
+    <div class="wrap">
+      <p class="cap mono"><span class="p">$</span> every request and response, in full</p>
+      <div class="shot-frame">
+        <div class="shot-bar">
+          <i class="r"></i><i class="y"></i><i class="g"></i>
+          <span class="shot-title mono">MCPFlo</span>
+          <span class="term-status mono"><span class="dot"></span>connected</span>
+        </div>
+        <img src="/assets/app-hero.png" alt="MCPFlo testing search_repositories against the GitHub MCP server" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM STRIP ============ -->
+  <section class="strip">
+    <div class="wrap">
+      <h2 class="kicker mono"><span class="p">#</span> three ways to call a tool</h2>
+      <div class="logblock">
+        <div class="logline"><span class="lvl">[BEFORE] </span><span class="txt">Wrote throwaway script. Called tool once. Threw it away.</span></div>
+        <div class="logline"><span class="lvl">[BEFORE] </span><span class="txt">Opened an AI client. Waited 4s. Model called the wrong tool.</span></div>
+        <div class="logline win"><span class="lvl">[MCPFLO] </span><span class="m">tools/call</span><span class="txt"> create_entities → </span><span class="ok">200 OK</span><span class="t"> 142ms</span><span class="txt">. Done.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="features" id="features">
+    <div class="wrap">
+      <p class="eyebrow mono"><span class="p">~/</span>features</p>
+      <p class="lede">Everything you need to test an MCP server by hand.</p>
+      <div class="cards">
+        <div class="card">
+          <p class="card-method mono">tools/call</p>
+          <h3 class="card-name">Tool execution</h3>
+          <div class="diagram" set:html={featTool}></div>
+          <p class="card-desc">Invoke a tool and inspect exactly what came back — text, JSON, images, or mixed content, plus the raw request and response.</p>
+        </div>
+        <div class="card">
+          <p class="card-method mono">input schema</p>
+          <h3 class="card-name">Schema-driven tool forms</h3>
+          <div class="diagram" set:html={featSchema}></div>
+          <p class="card-desc">Inputs auto-generated from a tool's JSON Schema — nested objects and arrays, live validation, and a raw-JSON toggle when you'd rather type it directly.</p>
+        </div>
+        <div class="card">
+          <p class="card-method mono">notifications/progress</p>
+          <h3 class="card-name">Live notifications</h3>
+          <div class="diagram" set:html={featNotifications}></div>
+          <p class="card-desc">Progress updates and log messages captured in real time while a call is in flight.</p>
+        </div>
+        <div class="card">
+          <p class="card-method mono">elicitation/create</p>
+          <h3 class="card-name">Elicitation</h3>
+          <div class="diagram" set:html={featElicitation}></div>
+          <p class="card-desc">When a tool asks for more input mid-call, MCPFlo renders the schema as a form. Answer and continue.</p>
+        </div>
+        <div class="card">
+          <p class="card-method mono">sampling/createMessage</p>
+          <h3 class="card-name">Sampling</h3>
+          <div class="diagram" set:html={featSampling}></div>
+          <p class="card-desc">When a server asks for a model completion, you write the reply by hand — no model call, no tokens spent.</p>
+        </div>
+        <div class="card">
+          <p class="card-method mono">context budget</p>
+          <h3 class="card-name">Context budget</h3>
+          <div class="diagram" set:html={featContextBudget}></div>
+          <p class="card-desc">Every server shows an estimated token cost, broken down by tools, resources, and prompts — so you know how much of a model's context window it would eat before you ever wire it in.</p>
+        </div>
+      </div>
+      <div class="features-foot">
+        <a href="/docs/getting-started/what-is-mcpflo" class="link-accent mono">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIRST CALL — 3 STEPS ============ -->
+  <section class="steps-sec">
+    <div class="wrap">
+      <h2 class="steps-title">Your first call in 3 steps</h2>
+      <div class="steps-row">
+        <div class="step-card">
+          <p class="step-num mono">01</p>
+          <h3 class="step-name">Add your server</h3>
+          <div class="inset" set:html={step1Html}></div>
+        </div>
+        <div class="step-arrow mono">→</div>
+        <div class="step-card">
+          <p class="step-num mono">02</p>
+          <h3 class="step-name">MCPFlo connects</h3>
+          <div class="inset" set:html={step2Html}></div>
+        </div>
+        <div class="step-arrow mono">→</div>
+        <div class="step-card">
+          <p class="step-num mono">03</p>
+          <h3 class="step-name">Call a tool</h3>
+          <div class="inset" set:html={step3Html}></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import "../scripts/typewriter.ts";
+  </script>
+</Layout>

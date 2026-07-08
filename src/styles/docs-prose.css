@@ -1,0 +1,71 @@
+/* Styles for markdown rendered inside a docs page.
+   The original static pages used hand-written class-based markup (h3.h3, .callout,
+   .codeline, .tbl, …); rendered markdown emits plain elements instead, so these
+   element-targeted rules reproduce the same look under .doc-body. */
+
+.doc-body :is(h2){
+  font-size:18px;font-weight:600;margin:34px 0 12px;letter-spacing:-0.01em;line-height:1.3;
+}
+.doc-body :is(h3){
+  font-size:15.5px;font-weight:650;margin:26px 0 10px;letter-spacing:-0.01em;
+}
+.doc-body :is(h4){
+  font-size:14px;font-weight:650;margin:22px 0 8px;color:var(--text-muted);
+}
+.doc-body p{font-size:15.5px;color:var(--text-primary);line-height:1.75;margin:0 0 16px;text-wrap:pretty;}
+
+.doc-body a{
+  color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .15s;
+}
+.doc-body a:hover{border-bottom-color:var(--accent);}
+
+.doc-body strong{font-weight:650;}
+
+/* lists */
+.doc-body ul,.doc-body ol{margin:0 0 18px;padding-left:1.4em;}
+.doc-body li{font-size:15.5px;line-height:1.75;margin:0 0 7px;}
+.doc-body li::marker{color:var(--accent);}
+.doc-body li > ul,.doc-body li > ol{margin:7px 0 0;}
+
+/* inline code */
+.doc-body :not(pre) > code{
+  font-family:var(--mono);font-size:0.88em;color:var(--code);background:var(--bg-elevated);
+  border:1px solid var(--border);padding:1.5px 6px;border-radius:4px;
+}
+
+/* fenced code blocks — the terminal look from the static pages */
+.doc-body pre{
+  background:#1a1a1a;border:1px solid #2a2a2a;border-radius:7px;box-shadow:var(--shadow);
+  font-family:var(--mono);font-size:13px;line-height:1.85;padding:16px 18px;margin:0 0 20px;
+  color:#cfcfcf;overflow-x:auto;
+}
+.doc-body pre code{font-family:inherit;font-size:inherit;color:inherit;background:none;border:0;padding:0;}
+
+/* blockquote → callout */
+.doc-body blockquote{
+  background:var(--bg-elevated);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:5px;padding:13px 18px;margin:6px 0 20px;
+}
+.doc-body blockquote p{margin:0 0 8px;font-size:14.5px;color:var(--text-primary);line-height:1.65;}
+.doc-body blockquote p:last-child{margin-bottom:0;}
+
+/* tables → .tbl */
+.doc-body table{
+  width:100%;border-collapse:collapse;margin:4px 0 20px;font-size:14px;
+  border:1px solid var(--border);border-radius:6px;overflow:hidden;
+}
+.doc-body th{
+  text-align:left;background:var(--bg-elevated);font-family:var(--mono);font-size:11.5px;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);font-weight:600;
+  padding:10px 14px;border-bottom:1px solid var(--border);
+}
+.doc-body td{padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top;}
+.doc-body tr:last-child td{border-bottom:0;}
+
+.doc-body hr{border:0;border-top:1px solid var(--border);margin:28px 0;}
+
+/* edit-on-github link */
+.edit-page{margin-top:26px;font-family:var(--mono);font-size:13px;}
+.edit-page a{color:var(--text-muted);display:inline-flex;align-items:center;gap:7px;transition:color .15s ease;}
+.edit-page a:hover{color:var(--accent);}
+.edit-page svg{width:14px;height:14px;}

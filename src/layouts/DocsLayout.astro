@@ -1,0 +1,135 @@
+---
+import "../styles/docs.css";
+import "../styles/docs-prose.css";
+import ThemeScript from "../components/ThemeScript.astro";
+import NavTools from "../components/NavTools.astro";
+import { getNavGroups, getPrevNext, type DocEntry } from "../lib/nav";
+
+interface Props {
+  entry: DocEntry;
+}
+const { entry } = Astro.props;
+const { title, section, description } = entry.data;
+
+const navGroups = await getNavGroups();
+const { prev, next } = await getPrevNext(entry.id);
+
+const repo = "https://github.com/harshalslimaye/mcpflo";
+// Repo that hosts this website. Used by the "Edit this page on GitHub" link.
+const siteRepo = "https://github.com/harshalslimaye/mcpflo-website";
+const editUrl = `${siteRepo}/edit/main/src/content/docs/${entry.id}.md`;
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{`MCPFlo — ${title}`}</title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <ThemeScript />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="nav">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <button class="contents-toggle mono" id="contentsToggle" aria-label="Contents">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg>
+            Contents
+          </button>
+          <a href="/" class="wordmark"><img src="/assets/logo.png" alt="" width="22" height="22" /><span>MCP<span class="flo">Flo</span></span></a>
+        </div>
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="/#features">Features</a>
+            <a href="/docs/getting-started/what-is-mcpflo" class="active">Docs</a>
+            <a href="#">Changelog</a>
+            <a href="#" class="dl">Download</a>
+          </div>
+          <NavTools />
+        </div>
+      </div>
+    </nav>
+
+    <div class="layout">
+      <aside class="sidebar" id="sidebar">
+        {
+          navGroups.map((group) => (
+            <div class="sb-group">
+              <p class="sb-label mono">{group.section}</p>
+              {group.items.map((item) => (
+                <a
+                  class:list={["sb-link", { active: item.id === entry.id }]}
+                  href={item.href}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          ))
+        }
+      </aside>
+      <div class="scrim" id="scrim"></div>
+
+      <main class="content">
+        <div class="content-inner">
+          <section class="doc-section">
+            <p class="crumb mono">{entry.id}</p>
+            <h2 class="h2">{title}</h2>
+            {description && <p class="lede">{description}</p>}
+
+            <div class="doc-body">
+              <slot />
+            </div>
+
+            <nav class="prevnext">
+              {
+                prev ? (
+                  <a href={`/docs/${prev.id}`}>&larr; {prev.data.title}</a>
+                ) : (
+                  <span class="ph">.</span>
+                )
+              }
+              {
+                next && (
+                  <a class="nx" href={`/docs/${next.id}`}>
+                    {next.data.title} &rarr;
+                  </a>
+                )
+              }
+            </nav>
+
+            <p class="edit-page mono">
+              <a href={editUrl} target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                Edit this page on GitHub
+              </a>
+            </p>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="foot-inner mono">
+        <div><span class="p">~/mcpflo</span> <span class="p">$</span> exit</div>
+        <div class="cmt">
+          # MCPFlo · MIT · <a href={repo}>github.com/harshalslimaye/mcpflo</a> ·
+          Issues · Changelog
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      import "../scripts/theme.ts";
+      import "../scripts/drawer.ts";
+    </script>
+  </body>
+</html>

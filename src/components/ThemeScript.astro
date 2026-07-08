@@ -1,0 +1,10 @@
+---
+// Applies the saved theme before first paint to avoid a flash of the wrong theme.
+// Mirrors the inline <script> in the original static pages. Must stay is:inline.
+---
+<script is:inline>
+  (function () {
+    var s = localStorage.getItem("mcpflo-home-theme");
+    if (s) document.documentElement.setAttribute("data-theme", s);
+  })();
+</script>

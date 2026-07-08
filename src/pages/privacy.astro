@@ -1,0 +1,131 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/docs-prose.css";
+---
+<Layout title="MCPFlo — Privacy Policy">
+  <section class="legal-sec">
+    <div class="wrap legal-wrap">
+      <p class="crumb mono">legal/privacy</p>
+      <h1 class="h2">Privacy Policy</h1>
+      <p class="lede">Effective Date: July 8, 2026</p>
+
+      <div class="doc-body">
+        <p>This Privacy Policy explains how MCPFlo (&ldquo;MCPFlo&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) handles information in connection with the MCPFlo desktop application and this website (collectively, the &ldquo;Software&rdquo;).</p>
+        <p>MCPFlo is built as a local-first developer tool. This policy is intended to describe, as plainly as possible, what that means for your data.</p>
+
+        <hr>
+
+        <h2>1. Summary</h2>
+        <ul>
+          <li>MCPFlo runs on your device and does not require an account.</li>
+          <li>Your server configurations, request history, and cached data stay on your device.</li>
+          <li>Credentials (OAuth tokens, environment variables, request headers) are encrypted at rest using your operating system&rsquo;s native credential store.</li>
+          <li>MCPFlo does not operate analytics, telemetry, or crash-reporting services that collect your usage data.</li>
+          <li>MCPFlo does not currently perform automatic update checks (see Section 7).</li>
+          <li>We do not sell or share your personal information, as those terms are defined under CCPA/CPRA (see Section 11).</li>
+          <li>Any data exchanged with an MCP server you connect to is governed by that server&rsquo;s own privacy practices, not this policy.</li>
+        </ul>
+
+        <h2>2. Scope and Our Role</h2>
+        <p>This policy covers the MCPFlo desktop application and this website. For the incidental, minimal data described in Section 6 (Website) below, MCPFlo acts as the data controller. For your server configurations, credentials, and request history, MCPFlo has no access to that data at all — it is created and stored solely on your device, so no controller/processor relationship with us arises over it.</p>
+        <p>If you connect MCPFlo to a third-party MCP server, that server operator is independently responsible, as controller (or processor, depending on its own arrangements), for any data you send to or receive from it. See Section 5.</p>
+
+        <h2>3. Information We Do Not Collect</h2>
+        <p>MCPFlo does not collect, transmit, or have access to:</p>
+        <ul>
+          <li>your MCP server configurations (names, commands, arguments, URLs);</li>
+          <li>your request and response history, including tool calls, resource reads, or rendered prompts;</li>
+          <li>OAuth tokens, environment variables, request headers, or other credentials you enter;</li>
+          <li>the content of any data returned by MCP servers you connect to.</li>
+        </ul>
+        <p>This information is created and stored entirely on your device, and MCPFlo-operated servers do not receive it unless a specific feature explicitly states otherwise.</p>
+
+        <h2>4. Local Data Storage</h2>
+        <p>MCPFlo stores the following data locally on your device:</p>
+        <ul>
+          <li><strong>Configuration file.</strong> Server entries and app preferences are saved to a <code>config.json</code> file in your OS-standard application data directory.</li>
+          <li><strong>Encrypted credentials.</strong> OAuth tokens, environment variables, and request headers are encrypted using your operating system&rsquo;s secure storage (macOS Keychain, Windows DPAPI, or Linux Secret Service, where available) before being written to disk.</li>
+          <li><strong>Capabilities cache.</strong> Discovered tools, resources, and prompts for each server may be cached locally to speed up subsequent connections.</li>
+        </ul>
+        <p>You can inspect, back up, or delete this data yourself at any time by locating the relevant files on your device or by removing a server from within the app.</p>
+
+        <h2>5. Third-Party MCP Servers and Services</h2>
+        <p>MCPFlo is designed to connect to MCP servers, APIs, and other services that you configure. These are typically operated by third parties, or by you.</p>
+        <p>Any data you send to, or receive from, a third-party server through MCPFlo is subject to that server&rsquo;s own privacy policy and practices, not this one. We do not control, monitor, or have visibility into how third-party servers handle data.</p>
+        <p>You are responsible for understanding the privacy practices of any MCP server you choose to connect to, particularly before sending sensitive or personal data through it.</p>
+
+        <h2>6. Website</h2>
+        <p>This website (the pages you are reading now) is a static site. It does not use cookies, analytics scripts, or third-party trackers to profile visitors.</p>
+        <p>Our hosting provider may, as a standard part of serving any website, generate basic technical logs (e.g. IP address, requested page, timestamp, user agent) for operational and security purposes such as diagnosing outages and detecting abuse. Our legal basis for this minimal processing is our legitimate interest in operating and securing the website. We do not use these logs to identify individual visitors, and we do not control their retention beyond our hosting provider&rsquo;s standard practice, which is typically limited to a matter of weeks before rotation or deletion.</p>
+
+        <h2>7. Software Updates</h2>
+        <p>MCPFlo does not currently include an automatic update-check mechanism. The application does not contact any MCPFlo-operated or third-party service in the background to check for new versions. New versions are published and downloaded manually — for example, from the GitHub Releases page or this website.</p>
+        <p>If this changes in a future version (for example, if in-app update checking is introduced), we will update this section to describe what information that exchange involves, whether it can be disabled, and what legal basis applies to it, before that feature ships.</p>
+
+        <h2>8. Data Security</h2>
+        <p>Credentials handled by MCPFlo are encrypted using your operating system&rsquo;s native security features and are never exposed to the parts of the app that don&rsquo;t need them. Encryption is tied to your device and OS user account, so encrypted data generally cannot be decrypted if copied to another machine or user account.</p>
+        <p>No method of storage or transmission is completely secure. You are responsible for securing your own device and for safeguarding any credentials or data you choose to store or transmit through the Software.</p>
+
+        <h2>9. Third-Party Dependencies</h2>
+        <p>MCPFlo is built using open-source libraries and SDKs (for example, Electron and the Model Context Protocol SDK). We do not configure or enable telemetry, analytics, or crash-reporting in the application ourselves, and we are not aware of any bundled dependency that independently transmits usage data.</p>
+        <p>That said, we cannot make an absolute guarantee about the runtime behavior of every third-party dependency we bundle. A full list of dependencies is available in the project&rsquo;s public source repository, should you wish to audit it yourself.</p>
+
+        <h2>10. Data Retention</h2>
+        <p>MCPFlo does not retain any of your project data, since it never leaves your device. On your device, configuration, credentials, and cached data persist until you remove them — either by deleting a server, clearing the cache, or uninstalling the application (see Section 13).</p>
+        <p>For the limited operational logs described in Section 6, retention is governed by our hosting provider&rsquo;s standard log-rotation policy, not by us directly, and is not extended for any secondary purpose.</p>
+
+        <h2>11. Your Privacy Rights</h2>
+        <p>Depending on where you live, you may have rights under data protection law, including the EU/UK GDPR and the California Consumer Privacy Act as amended by the CPRA. Because MCPFlo does not collect or hold personal data about you beyond the minimal, non-identifying operational logs described in Section 6, most of these rights are inherently satisfied by the local-first design described above — but we confirm them here for clarity:</p>
+        <ul>
+          <li><strong>Right to know / access</strong> — what data (if any) we hold about you.</li>
+          <li><strong>Right to rectification / correction</strong> — of inaccurate data we hold.</li>
+          <li><strong>Right to erasure / deletion</strong> — of data we hold about you.</li>
+          <li><strong>Right to data portability</strong> — to receive data you provided to us in a portable format.</li>
+          <li><strong>Right to restrict or object to processing</strong>, including any processing based on legitimate interest.</li>
+          <li><strong>Right to opt out of the sale or sharing</strong> of personal information (CCPA/CPRA). <strong>We do not sell or share personal information</strong>, as those terms are defined under CCPA/CPRA, so no opt-out is necessary — but you may still submit a request and we will confirm this in writing.</li>
+          <li><strong>Right to non-discrimination</strong> for exercising any of the above rights.</li>
+        </ul>
+        <p>To exercise any of these rights, contact us at the address in Section 16. Because we hold no account or contact data linking you to a request, we may ask you to describe the specific interaction (e.g. approximate date and feature used) so we can confirm whether any data exists to act on.</p>
+
+        <h2>12. Children&rsquo;s Privacy</h2>
+        <p>MCPFlo is a developer tool intended for professional and technical use and is not directed at children. We do not knowingly collect personal information from children under 13 (as defined by COPPA) or under 16 (the default age of consent for information-society services under GDPR in a number of EU member states, absent a lower age set by national law).</p>
+        <p>Because MCPFlo does not operate accounts, forms, or data collection of any kind, we do not expect to receive a minor&rsquo;s personal information in the ordinary course of using the Software. If we nonetheless become aware that we have inadvertently received such information — for example, through an unsolicited support email — we will delete it promptly upon discovery or upon request from a parent or guardian. Contact us at the address in Section 16 to make such a request.</p>
+
+        <h2>13. Your Choices</h2>
+        <p>Because your data stays on your device, you are in direct control of it:</p>
+        <ul>
+          <li>you can view, edit, or delete your configuration file directly;</li>
+          <li>removing a server from MCPFlo clears its stored secrets, configuration, and cached capabilities;</li>
+          <li>uninstalling MCPFlo removes the application; associated local data may remain on disk until you delete it manually, depending on your operating system&rsquo;s uninstall behavior.</li>
+        </ul>
+
+        <h2>14. International Users and Data Transfers</h2>
+        <p>Because MCPFlo processes data locally on your device rather than on centrally hosted servers, there is generally no cross-border transfer of your project data by us. If you use MCPFlo to connect to third-party or self-hosted MCP servers located in other jurisdictions, that transfer is governed by your configuration choices and the third party&rsquo;s practices, not by us.</p>
+        <p>The limited hosting logs described in Section 6 may be processed in the jurisdiction where our hosting provider operates its infrastructure.</p>
+
+        <h2>15. Security Incident Notification</h2>
+        <p>Because MCPFlo does not operate a central server that stores your project data, most data-security incidents that could occur would be local to your own device, and outside our visibility or control.</p>
+        <p>If we become aware of a security incident affecting infrastructure we do operate (such as this website or its hosting environment) that creates a real risk to individuals, we will notify affected users without undue delay, using the most direct channel reasonably available to us (which, absent user accounts, will typically be a public notice on this website and/or the project&rsquo;s GitHub repository), and, where required by applicable law, notify the relevant supervisory authority within the timeframe that law requires.</p>
+
+        <h2>16. Contact</h2>
+        <p>If you have questions regarding this Privacy Policy, or wish to exercise any of the rights described in Section 11, please contact us at <a href="mailto:getmcpflo@gmail.com">getmcpflo@gmail.com</a>.</p>
+
+        <h2>17. Governing Law</h2>
+        <p>This Privacy Policy is governed by the laws of India, without regard to its conflict of law principles, consistent with the governing law provision in our <a href="/terms">Terms &amp; Conditions</a>. Where mandatory data protection law of your own jurisdiction (e.g. GDPR or CCPA/CPRA) grants you rights that cannot be waived by choice of governing law, those rights remain available to you as described in Section 11.</p>
+
+        <h2>18. Changes to This Policy</h2>
+        <p>We may revise this Privacy Policy from time to time. When we do, we will update the Effective Date at the top of this document. Material changes will be reflected in the version history of this file in our public <a href="https://github.com/harshalslimaye/mcpflo-website/commits/main/src/pages/privacy.astro">website repository</a>, where prior versions of this page remain visible via commit history. Your continued use of MCPFlo after a revised policy becomes effective constitutes your acceptance of the updated policy.</p>
+
+        <h2>19. Related</h2>
+        <p>See also our <a href="/terms">Terms &amp; Conditions</a>, and the documentation on <a href="/docs/connecting-to-servers/secrets-credential-storage">Secrets &amp; Credential Storage</a> and the <a href="/docs/configuration-reference/config-file">Config File</a> for technical detail on how local data is stored.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-sec{padding:56px 0 80px;}
+  .legal-wrap{max-width:760px;}
+  .crumb{font-size:12px;color:var(--text-muted);margin:0 0 10px;}
+  .lede{color:var(--text-muted);margin:0 0 32px;font-size:15px;}
+</style>
