@@ -214,7 +214,7 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width:1000px){
-    .layout{grid-template-columns:1fr;}
+    .layout{grid-template-columns:minmax(0,1fr);}
     .contents-toggle{display:inline-flex;}
     button.nav-toggle{display:flex;}
     .nav-links{display:none;position:absolute;top:54px;left:0;right:0;flex-direction:column;

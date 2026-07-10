@@ -9,6 +9,7 @@ export const SECTION_ORDER = [
   "Connecting to Servers",
   "Browsing Capabilities",
   "Invoking Tools & Prompts",
+  "Testing",
   "History & Workflow",
   "Configuration Reference",
   "Architecture",
