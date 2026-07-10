@@ -20,6 +20,26 @@ interface Release {
 
 const releases: Release[] = [
   {
+    version: "0.2.0",
+    date: "July 10, 2026",
+    compareUrl: `${repo}/compare/v0.1.0...v0.2.0`,
+    releaseUrl: `${repo}/releases/tag/v0.2.0`,
+    features: [
+      { text: "Add custom tests folder per server", hash: "9a07e1b", commitUrl: `${repo}/commit/9a07e1bc0b9ca3ada07b5927bd8f51cc4ded0a69` },
+      { text: "Add sandboxed test engine for tool-call assertions", hash: "21f1036", commitUrl: `${repo}/commit/21f10362c4521ae4a7f274c0cf8adce88a2a5336` },
+      { text: "Add Saved Requests to Tool/Prompt panels and use them for auto test runs", hash: "5e954c8", commitUrl: `${repo}/commit/5e954c8d0f54956daf760d77083488b5866fee3f` },
+      { text: "Add Tests tab with auto-run results across tools, prompts, and resources", hash: "e2f4621", commitUrl: `${repo}/commit/e2f4621762277bdf2fbbc5d182d46de3f5541722` },
+      { text: "Redesign Server Details into tabbed Overview/Capabilities/Tests", hash: "3d948d9", commitUrl: `${repo}/commit/3d948d9e5134a767d02c383d5163bc64cdefc63d` },
+      { text: "Add complex schema fixture tools to server-everything for form coverage", hash: "282719b", commitUrl: `${repo}/commit/282719b15bb5ede9b2e4b60e2dfa08bff0a874b3` },
+    ],
+    fixes: [
+      { text: "Close Windows path-traversal gap in scriptStore's safeJoin", hash: "9214c47", commitUrl: `${repo}/commit/9214c47eed6284b2486a47b5d04303d3a3e3de09` },
+      { text: "Flush unsaved Tests-tab edits on unmount instead of dropping them", hash: "6ff1fd4", commitUrl: `${repo}/commit/6ff1fd41c96ab5d342b4594a66542b21f3bd6633` },
+      { text: "Harden Saved Requests against corrupt files, races, and silent failures", hash: "16a9c60", commitUrl: `${repo}/commit/16a9c60f1b52d7aa60663f498939ce4427ec98ee` },
+      { text: "Show the call result immediately instead of waiting on the test run", hash: "9c4518c", commitUrl: `${repo}/commit/9c4518cbe92d2f13aaebed1b367d03036918747e` },
+    ],
+  },
+  {
     version: "0.1.0",
     date: "July 3, 2026",
     compareUrl: `${repo}/compare/v0.0.6...v0.1.0`,
