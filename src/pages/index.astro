@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { builds, repo, version } from "../lib/releases";
+import { builds, repo, version, releasesIndexUrl } from "../lib/releases";
 
 // These two blocks contain literal { } from JSON; rendered via set:html so Astro
 // doesn't interpret the braces as expressions. Ported verbatim from index.html.
@@ -110,6 +110,10 @@ const step3Html = `<span class="ar-req">→ tools/call</span>
             data-win-label="Download for Windows"
             data-win-platform="Windows"
             data-win-size={builds.windows.primary.size}
+            data-android-href={releasesIndexUrl}
+            data-android-label="View releases on GitHub"
+            data-android-platform="Android"
+            data-android-size="not available"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
             <span id="hero-download-label">Download for macOS</span>
