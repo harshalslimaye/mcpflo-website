@@ -66,6 +66,20 @@ const featContextBudget = `<span class="h">Tools      </span><span class="box">1
 <span class="h">─────────────────    ───────────────</span>
 <span class="fld">Total</span>        <span class="fld">13.5K tok</span>  <span class="ms">3% of 400K</span>`;
 
+const testScriptHtml = `<span class="test-fn">test</span>(<span class="test-str">'responds with a greeting'</span>, () => {
+  expect(res.getText()).to.include(<span class="test-str">'Hello'</span>)
+})
+<span class="test-fn">test</span>(<span class="test-str">'completes quickly'</span>, () => {
+  expect(res.responseTime).to.be.below(<span class="nu">500</span>)
+})`;
+
+const testResultHtml = `<span class="ar-req">→</span> { <span class="k">"name"</span>: <span class="s">"greet"</span> }
+<span class="ar-res">←</span> <span class="ok">200 OK</span>  <span class="ms">142ms</span>
+
+<span class="ok">✓</span> responds with a greeting   <span class="ms">2ms</span>
+<span class="ok">✓</span> completes quickly          <span class="ms">142ms</span>
+<div class="summary-line"><span class="ok">2 passed</span> · 0 failed · 144ms</div>`;
+
 const step2Html = `<span class="ok">✓</span> connected
 <span class="ok">✓</span> 3 tools found
 <span class="ok">✓</span> 2 resources
@@ -149,6 +163,32 @@ const step3Html = `<span class="ar-req">→ tools/call</span>
         <div class="logline"><span class="lvl">[BEFORE] </span><span class="txt">Wrote throwaway script. Called tool once. Threw it away.</span></div>
         <div class="logline"><span class="lvl">[BEFORE] </span><span class="txt">Opened an AI client. Waited 4s. Model called the wrong tool.</span></div>
         <div class="logline win"><span class="lvl">[MCPFLO] </span><span class="m">tools/call</span><span class="txt"> create_entities → </span><span class="ok">200 OK</span><span class="t"> 142ms</span><span class="txt">. Done.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTING ============ -->
+  <section class="test-sec" id="testing">
+    <div class="wrap">
+      <p class="kicker mono"><span class="p">$</span> mcpflo test</p>
+      <h2 class="sec-head">Stop eyeballing responses. Start asserting them.</h2>
+      <p class="sec-sub">Attach a test script to any tool, resource, or prompt — it autosaves as you type, and runs automatically every time you call that capability again. No separate "run tests" step.</p>
+      <div class="term">
+        <div class="term-bar">
+          <i class="r"></i><i class="y"></i><i class="g"></i>
+          <span class="term-title mono">greet · Tests</span>
+          <span class="term-status mono"><span class="dot"></span>2/2 passed</span>
+        </div>
+        <div class="split">
+          <div>
+            <p class="pane-label">tests.js</p>
+            <div class="split-col script" set:html={testScriptHtml}></div>
+          </div>
+          <div>
+            <p class="pane-label">result — tools/call · greet</p>
+            <div class="split-col result" set:html={testResultHtml}></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
