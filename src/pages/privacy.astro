@@ -7,7 +7,7 @@ import "../styles/docs-prose.css";
     <div class="wrap legal-wrap">
       <p class="crumb mono">legal/privacy</p>
       <h1 class="h2">Privacy Policy</h1>
-      <p class="lede">Effective Date: July 8, 2026</p>
+      <p class="lede">Effective Date: July 18, 2026</p>
 
       <div class="doc-body">
         <p>This Privacy Policy explains how MCPFlo (&ldquo;MCPFlo&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;us&rdquo;) handles information in connection with the MCPFlo desktop application and this website (collectively, the &ldquo;Software&rdquo;).</p>
@@ -21,7 +21,7 @@ import "../styles/docs-prose.css";
           <li>Your server configurations, request history, and cached data stay on your device.</li>
           <li>Credentials (OAuth tokens, environment variables, request headers) are encrypted at rest using your operating system&rsquo;s native credential store.</li>
           <li>MCPFlo does not operate analytics, telemetry, or crash-reporting services that collect your usage data.</li>
-          <li>MCPFlo does not currently perform automatic update checks (see Section 7).</li>
+          <li>On launch, MCPFlo checks GitHub Releases for a new version. This is the only background network request the app makes on its own, and it carries no personal data beyond standard HTTP request metadata (see Section 7).</li>
           <li>We do not sell or share your personal information, as those terms are defined under CCPA/CPRA (see Section 11).</li>
           <li>Any data exchanged with an MCP server you connect to is governed by that server&rsquo;s own privacy practices, not this policy.</li>
         </ul>
@@ -59,8 +59,14 @@ import "../styles/docs-prose.css";
         <p>Our hosting provider may, as a standard part of serving any website, generate basic technical logs (e.g. IP address, requested page, timestamp, user agent) for operational and security purposes such as diagnosing outages and detecting abuse. Our legal basis for this minimal processing is our legitimate interest in operating and securing the website. We do not use these logs to identify individual visitors, and we do not control their retention beyond our hosting provider&rsquo;s standard practice, which is typically limited to a matter of weeks before rotation or deletion.</p>
 
         <h2>7. Software Updates</h2>
-        <p>MCPFlo does not currently include an automatic update-check mechanism. The application does not contact any MCPFlo-operated or third-party service in the background to check for new versions. New versions are published and downloaded manually — for example, from the GitHub Releases page or this website.</p>
-        <p>If this changes in a future version (for example, if in-app update checking is introduced), we will update this section to describe what information that exchange involves, whether it can be disabled, and what legal basis applies to it, before that feature ships.</p>
+        <p>As of version 0.3.0, MCPFlo includes an in-app update mechanism (built on the open-source <code>electron-updater</code> library). On each launch, the application contacts <strong>GitHub Releases</strong> (a service operated by GitHub, Inc.) to check whether a newer version is available, and if one is, downloads it in the background. The app never restarts or installs an update on its own — you are shown a &ldquo;Restart to update&rdquo; prompt, and if you ignore it, the downloaded update is applied the next time you start the app.</p>
+        <p>This update check is the only network request MCPFlo initiates on its own. What it involves:</p>
+        <ul>
+          <li>The request goes directly to GitHub&rsquo;s servers. No MCPFlo-operated service is involved, and we receive nothing from it — we cannot see who checked for updates, when, or from where.</li>
+          <li>The request contains no account information and none of your local data (server configurations, credentials, or history). Like any HTTP request, it exposes standard technical metadata — your IP address and a user agent identifying the app and its version — to GitHub. GitHub&rsquo;s handling of that metadata is governed by the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener">GitHub Privacy Statement</a>.</li>
+          <li>There is currently no in-app setting to disable the update check. If you need to prevent it, you can block network access to <code>github.com</code> for the application at the OS or firewall level; the app remains fully functional without it. You can also build from source, where the updater is inactive.</li>
+        </ul>
+        <p>Where GDPR applies, our legal basis for this processing is our legitimate interest in keeping installed copies of the Software current with security fixes and improvements, in a way that involves no MCPFlo-operated data collection.</p>
 
         <h2>8. Data Security</h2>
         <p>Credentials handled by MCPFlo are encrypted using your operating system&rsquo;s native security features and are never exposed to the parts of the app that don&rsquo;t need them. Encryption is tied to your device and OS user account, so encrypted data generally cannot be decrypted if copied to another machine or user account.</p>
