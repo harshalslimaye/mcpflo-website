@@ -35,6 +35,19 @@ Download the latest installer (`.exe`, NSIS) from the
 > sign of a corrupted download — signing for Windows builds is planned but
 > not yet in place.
 
+## Updating
+
+From **v0.3.0** onwards, MCPFlo keeps itself up to date. On launch it checks
+[GitHub Releases](https://github.com/harshalslimaye/mcpflo/releases) for a
+newer version and downloads it in the background. When the download is
+ready, a **Restart to update** prompt appears — the app never restarts on
+its own. If you ignore the prompt, the update is applied the next time you
+start the app.
+
+If you're on **v0.2.0 or earlier**, update manually one last time: download
+the latest installer from the releases page and install it over your
+existing copy. Auto-update takes over from there.
+
 ## Building from source
 
 Requires **Node.js 18+** and **npm 9+**.

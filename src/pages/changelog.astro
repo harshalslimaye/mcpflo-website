@@ -20,6 +20,17 @@ interface Release {
 
 const releases: Release[] = [
   {
+    version: "0.3.0",
+    date: "July 18, 2026",
+    compareUrl: `${repo}/compare/v0.2.0...v0.3.0`,
+    releaseUrl: `${repo}/releases/tag/v0.3.0`,
+    features: [
+      { text: "Seed fresh installs with @mcpflo/server-everything", hash: "9df1ebf", commitUrl: `${repo}/commit/9df1ebf86a5f0014621053b066b5047424de0d0f` },
+      { text: "Add in-app auto-update via electron-updater", hash: "971f5d2", commitUrl: `${repo}/commit/971f5d21d37435971f6e7e27a4ef44181c381c55` },
+    ],
+    fixes: [],
+  },
+  {
     version: "0.2.0",
     date: "July 10, 2026",
     compareUrl: `${repo}/compare/v0.1.0...v0.2.0`,
